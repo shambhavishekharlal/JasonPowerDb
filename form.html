@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Style.css">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
+    
+</head>
+<body>
+  
+        <div class="canister">
+         <h1>Sign Up</h1>	
+          <h3>fill this form to sign up</h3>
+          <hr>
+      
+          <input type="text" placeholder="firstname" name="firstname"  id = 'firstname' required>
+          <input type="text" placeholder="familyname" name="familyname"  id = 'familyname' required>
+          <input type="text" placeholder="Phone Number" name="phone" id = 'phone' required>
+          <input type="email" placeholder="enter your email/username" name="email" id = 'email' required>
+          <input type="password" placeholder="Enter your password" name="password" id = 'password' required>     
+              
+            <button type="submit" class="btn" onclick="saveEmployee()">Happily Sign Up</button>
+        </div>
+
+      <script>
+        $("#firstname").focus();
+        function validateAndGetFormData() {
+        var fnameVar = $("#firstname").val();
+        if (fnameVar === "") {
+        alert("firstname is required value");
+        $("#firstname").focus();
+        return "";
+        }
+
+        var mnameVar = $("#familyname").val();
+        if (mnameVar === "") {
+        alert("familyname is required value");
+        $("#familyname").focus();
+        return "";
+        }
+
+        var pVar = $("#phone").val();
+        if (pVar === "") {
+        alert("Phone no is required value");
+        $("#phone").focus();
+        return "";
+        }
+
+        var emailVar = $("#email").val();
+        if (emailVar === "") {
+        alert("Employee email is required value");
+        $("#email").focus();
+        return "";
+        }
+
+        var passwordVar = $("#password").val();
+        if (passwordVar === "") {
+        alert("Password is required value");
+        $("#password").focus();
+        return "";
+        }
+
+        var jsonStrObj = {
+        fName: fnameVar,
+        mName: mnameVar,
+        phone: pVar,
+        email: emailVar,
+        password: passwordVar
+
+        };
+        return JSON.stringify(jsonStrObj);
+        }
+
+        function resetForm() {
+        $("#firstname").val("")
+        $("#familyname").val("");
+        $("#phone").val("");
+        $("#email").val("");
+        $("#password").val("");
+
+        $("#firstname").focus();
+        }
+
+        function saveEmployee() {
+        var jsonStr = validateAndGetFormData();
+        if (jsonStr === "") {
+        return;
+        }
+        var putReqStr = createPUTRequest("90935761|-31948838067814468|90935039",
+        jsonStr, "Emp", "Emp_Data");
+        jQuery.ajaxSetup({async: false});
+        var resultObj = executeCommandAtGivenBaseUrl(putReqStr,
+        "http://api.login2explore.com:5577", "/api/iml");
+        jQuery.ajaxSetup({async: true});
+        resetForm();
+        }
+        </script>
+</body>
+</html>
+</body>
+</html>

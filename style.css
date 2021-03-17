@@ -1,0 +1,33 @@
+body {font-family: Arial; background-color: #b0b2b5;}
+ *{box-sizing: border-box}
+
+
+
+input[type=text], input[type=password], input[type=email]{
+  width: 100%;
+  padding: 18px;
+  margin: 3px 0 18px 0;
+  background: #ffffff;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+  background-color: #ccccff;
+ 
+}
+
+button {
+  background-color: #60d955;
+  color: white;
+  padding: 12px 19px;
+  border: dotted;
+  width: 100%;
+  opacity: 0.7;
+}
+
+
+.canister {
+max-width: 500px;
+margin: auto;
+padding: 20px;}
+
+}
